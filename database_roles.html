@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Database Roles - Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: #020617;
+}
+.markmap-dark {
+  background: #020617;
+  color: white;
+}
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateY(-2px);
+}
+.back-button i {
+  width: 18px;
+  height: 18px;
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+  <a href="index.html" class="back-button">
+    <i data-lucide="home"></i>
+    <span>Portal</span>
+  </a>
+  <svg id="mindmap"></svg>
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script>
+  <script>
+    const markdown = `
+# Database Roles
+
+- Database Administrator (DBA)
+  - Installation & Upgrades
+  - Backups & Recovery
+  - Performance Tuning
+  - Monitoring & Alerting
+  - Security & Access Control
+  - High Availability
+  - Archiving & Retention
+  - Capacity Planning
+
+- Database Developer
+  - Schema Design
+  - Data Modeling
+  - SQL / NoSQL Queries
+  - Stored Procedures
+  - Indexing Strategy
+  - Query Optimization
+  - Data Integrity
+  - Application Integration
+`;
+
+    const { Markmap, loadCSS, loadJS, Transformer } = window.markmap;
+    const transformer = new Transformer();
+    const { root, features } = transformer.transform(markdown);
+    const { styles, scripts } = transformer.getAssets();
+    if (styles) loadCSS(styles);
+    if (scripts) loadJS(scripts);
+    
+    Markmap.create('svg#mindmap', null, root);
+    
+    // Add toolbar
+    const { Toolbar } = window.markmap;
+    const toolbar = new Toolbar();
+    toolbar.attach(window.mm || Markmap.create('svg#mindmap', null, root));
+    const toolbarEl = toolbar.render();
+    toolbarEl.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+    document.body.append(toolbarEl);
+  </script>
+</body>
+</html>
