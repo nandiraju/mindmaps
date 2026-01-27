@@ -26,11 +26,51 @@ html {
 .mm-toolbar-brand {
   display: none !important;
 }
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: 'Outfit', sans-serif;
+}
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateY(-2px);
+}
+.back-button i {
+  width: 18px;
+  height: 18px;
+}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
 </head>
 <body>
-<svg id="mindmap"></svg>
+  <a href="index.html" class="back-button">
+    <i data-lucide="home"></i>
+    <span>Portal</span>
+  </a>
+  <svg id="mindmap"></svg>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(()=>{setTimeout(()=>{const{markmap:S,mm:Q}=window,$=new S.Toolbar;$.attach(Q);const I=$.render();I.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(I)})})()</script><script>((l,U,M,R)=>{const N=l();window.mm=N.Markmap.create("svg#mindmap",(U||N.deriveOptions)(R),M),window.matchMedia("(prefers-color-scheme: dark)").matches&&document.documentElement.classList.add("markmap-dark")})(()=>window.markmap,null,{"content":"Software Engineering Organization","children":[{"content":"Executive Leadership","children":[{"content":"Chief Technology Officer (CTO)","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"Vice President of Engineering","children":[],"payload":{"tag":"li","lines":"4,6"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"Product &amp; Program Management","children":[{"content":"Head of Product","children":[],"payload":{"tag":"li","lines":"7,8"}},{"content":"Product Manager","children":[],"payload":{"tag":"li","lines":"8,9"}},{"content":"Senior Product Manager","children":[],"payload":{"tag":"li","lines":"9,10"}},{"content":"Program Manager","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"Delivery Manager","children":[],"payload":{"tag":"li","lines":"11,12"}},{"content":"Technical Program Manager","children":[],"payload":{"tag":"li","lines":"12,14"}}],"payload":{"tag":"h2","lines":"6,7"}},{"content":"Engineering (Application &amp; Platform)","children":[{"content":"Backend Engineering","children":[{"content":"Backend Engineer","children":[],"payload":{"tag":"li","lines":"23,24"}},{"content":"API Engineer","children":[],"payload":{"tag":"li","lines":"24,25"}},{"content":"Integration Engineer","children":[],"payload":{"tag":"li","lines":"25,27"}}],"payload":{"tag":"h3","lines":"22,23"}},{"content":"Frontend Engineering","children":[{"content":"Frontend Engineer","children":[],"payload":{"tag":"li","lines":"28,29"}},{"content":"Mobile Engineer (iOS)","children":[],"payload":{"tag":"li","lines":"29,30"}},{"content":"Mobile Engineer (Android)","children":[],"payload":{"tag":"li","lines":"30,31"}},{"content":"Web Engineer","children":[],"payload":{"tag":"li","lines":"31,33"}}],"payload":{"tag":"h3","lines":"27,28"}},{"content":"Platform / Core Systems","children":[{"content":"Platform Engineer","children":[],"payload":{"tag":"li","lines":"34,35"}},{"content":"Systems Engineer","children":[],"payload":{"tag":"li","lines":"35,36"}},{"content":"Authentication &amp; Security Engineer","children":[],"payload":{"tag":"li","lines":"36,38"}}],"payload":{"tag":"h3","lines":"33,34"}}],"payload":{"tag":"h2","lines":"14,15"}},{"content":"Data &amp; Database Engineering","children":[{"content":"Head of Data Engineering","children":[],"payload":{"tag":"li","lines":"39,40"}},{"content":"Data Engineering Manager","children":[],"payload":{"tag":"li","lines":"40,41"}},{"content":"Data Engineer","children":[],"payload":{"tag":"li","lines":"41,42"}},{"content":"Senior Data Engineer","children":[],"payload":{"tag":"li","lines":"42,43"}},{"content":"Database Engineer","children":[],"payload":{"tag":"li","lines":"43,44"}},{"content":"Database Administrator (DBA)","children":[],"payload":{"tag":"li","lines":"44,45"}},{"content":"Analytics Engineer","children":[],"payload":{"tag":"li","lines":"45,47"}}],"payload":{"tag":"h2","lines":"38,39"}},{"content":"Data Science &amp; AI","children":[{"content":"Head of Data Science","children":[],"payload":{"tag":"li","lines":"48,49"}},{"content":"Data Scientist","children":[],"payload":{"tag":"li","lines":"49,50"}},{"content":"Senior Data Scientist","children":[],"payload":{"tag":"li","lines":"50,51"}},{"content":"Machine Learning Engineer","children":[],"payload":{"tag":"li","lines":"51,52"}},{"content":"AI Engineer","children":[],"payload":{"tag":"li","lines":"52,54"}}],"payload":{"tag":"h2","lines":"47,48"}},{"content":"DevOps / SRE &amp; Infrastructure","children":[{"content":"Head of DevOps / SRE","children":[],"payload":{"tag":"li","lines":"55,56"}},{"content":"DevOps Engineering Manager","children":[],"payload":{"tag":"li","lines":"56,57"}},{"content":"DevOps Engineer","children":[],"payload":{"tag":"li","lines":"57,58"}},{"content":"Site Reliability Engineer (SRE)","children":[],"payload":{"tag":"li","lines":"58,59"}},{"content":"Cloud Infrastructure Engineer","children":[],"payload":{"tag":"li","lines":"59,60"}},{"content":"Security Engineer","children":[],"payload":{"tag":"li","lines":"60,62"}}],"payload":{"tag":"h2","lines":"54,55"}},{"content":"Quality Engineering (QA)","children":[{"content":"Head of Quality Engineering","children":[],"payload":{"tag":"li","lines":"63,64"}},{"content":"QA Engineering Manager","children":[],"payload":{"tag":"li","lines":"64,65"}},{"content":"QA Automation Engineer","children":[],"payload":{"tag":"li","lines":"65,66"}},{"content":"Manual QA Engineer","children":[],"payload":{"tag":"li","lines":"66,67"}},{"content":"Performance Test Engineer","children":[],"payload":{"tag":"li","lines":"67,68"}},{"content":"Security Test Engineer","children":[],"payload":{"tag":"li","lines":"68,70"}}],"payload":{"tag":"h2","lines":"62,63"}},{"content":"UI / UX Design","children":[{"content":"Head of Design","children":[],"payload":{"tag":"li","lines":"71,72"}},{"content":"Product Designer","children":[],"payload":{"tag":"li","lines":"72,73"}},{"content":"UI Designer","children":[],"payload":{"tag":"li","lines":"73,74"}},{"content":"UX Designer","children":[],"payload":{"tag":"li","lines":"74,75"}},{"content":"Interaction Designer","children":[],"payload":{"tag":"li","lines":"75,76"}},{"content":"Design Systems Engineer","children":[],"payload":{"tag":"li","lines":"76,78"}}],"payload":{"tag":"h2","lines":"70,71"}},{"content":"Architecture &amp; Governance (Optional)","children":[{"content":"Principal Engineer","children":[],"payload":{"tag":"li","lines":"79,80"}},{"content":"Staff Engineer","children":[],"payload":{"tag":"li","lines":"80,81"}},{"content":"Solutions Architect","children":[],"payload":{"tag":"li","lines":"81,82"}},{"content":"Enterprise Architect","children":[],"payload":{"tag":"li","lines":"82,84"}}],"payload":{"tag":"h2","lines":"78,79"}},{"content":"Delivery Model (Cross-Functional)","children":[{"content":"Product Owner","children":[],"payload":{"tag":"li","lines":"85,86"}},{"content":"Technical Lead","children":[],"payload":{"tag":"li","lines":"86,87"}},{"content":"Software Engineer","children":[],"payload":{"tag":"li","lines":"87,88"}},{"content":"QA Engineer","children":[],"payload":{"tag":"li","lines":"88,89"}},{"content":"DevOps Engineer","children":[],"payload":{"tag":"li","lines":"89,90"}},{"content":"Designer","children":[],"payload":{"tag":"li","lines":"90,91"}}],"payload":{"tag":"h2","lines":"84,85"}}],"payload":{"tag":"h1","lines":"0,1"}},null)</script>
 </body>
 </html>

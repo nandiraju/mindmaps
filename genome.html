@@ -23,11 +23,51 @@ html {
   background: #27272a;
   color: white;
 }
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: 'Outfit', sans-serif;
+}
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateY(-2px);
+}
+.back-button i {
+  width: 18px;
+  height: 18px;
+}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
 </head>
 <body>
-<svg id="mindmap"></svg>
+  <a href="index.html" class="back-button">
+    <i data-lucide="home"></i>
+    <span>Portal</span>
+  </a>
+  <svg id="mindmap"></svg>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(()=>{setTimeout(()=>{const{markmap:S,mm:Q}=window,$=new S.Toolbar;$.attach(Q);const I=$.render();I.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(I)})})()</script><script>((l,U,M,R)=>{const N=l();window.mm=N.Markmap.create("svg#mindmap",(U||N.deriveOptions)(R),M),window.matchMedia("(prefers-color-scheme: dark)").matches&&document.documentElement.classList.add("markmap-dark")})(()=>window.markmap,null,{"content":"DNA &amp; Genetics Overview","children":[{"content":"DNA","children":[{"content":"Genetic blueprint","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"A, T, C, G letters","children":[],"payload":{"tag":"li","lines":"4,5"}},{"content":"~3 billion base pairs","children":[],"payload":{"tag":"li","lines":"5,6"}},{"content":"Double helix structure","children":[],"payload":{"tag":"li","lines":"6,7"}},{"content":"Stored in every cell","children":[],"payload":{"tag":"li","lines":"7,9"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"Genome","children":[{"content":"Whole genome = full DNA sequence","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"Reference genome = standard baseline for comparison","children":[],"payload":{"tag":"li","lines":"11,13"}}],"payload":{"tag":"h2","lines":"9,10"}},{"content":"Variations &amp; Mutations","children":[{"content":"Genetic variation = DNA differences","children":[],"payload":{"tag":"li","lines":"14,15"}},{"content":"Mutation = DNA typo","children":[],"payload":{"tag":"li","lines":"15,16"}},{"content":"Can affect proteins","children":[],"payload":{"tag":"li","lines":"16,17"}},{"content":"Can increase disease risk","children":[],"payload":{"tag":"li","lines":"17,19"}}],"payload":{"tag":"h2","lines":"13,14"}},{"content":"RNA","children":[{"content":"Copy of DNA instructions","children":[],"payload":{"tag":"li","lines":"20,21"}},{"content":"Short-lived","children":[],"payload":{"tag":"li","lines":"21,22"}},{"content":"Messenger role","children":[],"payload":{"tag":"li","lines":"22,23"}},{"content":"Used to make proteins","children":[],"payload":{"tag":"li","lines":"23,25"}}],"payload":{"tag":"h2","lines":"19,20"}},{"content":"Proteins","children":[{"content":"Functional molecules","children":[],"payload":{"tag":"li","lines":"26,27"}},{"content":"Do the work in the body","children":[],"payload":{"tag":"li","lines":"27,28"}},{"content":"Built from RNA instructions","children":[],"payload":{"tag":"li","lines":"28,30"}}],"payload":{"tag":"h2","lines":"25,26"}},{"content":"Protein Folding","children":[{"content":"Proteins fold into 3D shapes","children":[],"payload":{"tag":"li","lines":"31,32"}},{"content":"Shape = function","children":[],"payload":{"tag":"li","lines":"32,33"}},{"content":"Wrong folding &#x2192; disease","children":[],"payload":{"tag":"li","lines":"33,35"}}],"payload":{"tag":"h2","lines":"30,31"}},{"content":"Cell","children":[{"content":"Autonomous unit","children":[],"payload":{"tag":"li","lines":"36,37"}},{"content":"Contains DNA","children":[],"payload":{"tag":"li","lines":"37,38"}},{"content":"Makes RNA","children":[],"payload":{"tag":"li","lines":"38,39"}},{"content":"Produces proteins","children":[],"payload":{"tag":"li","lines":"39,40"}},{"content":"Has organelles (mitochondria, ribosomes, etc.)","children":[],"payload":{"tag":"li","lines":"40,42"}}],"payload":{"tag":"h2","lines":"35,36"}},{"content":"Disease Connection","children":[{"content":"DNA mutation &#x2192; faulty RNA","children":[],"payload":{"tag":"li","lines":"43,44"}},{"content":"Faulty RNA &#x2192; faulty protein","children":[],"payload":{"tag":"li","lines":"44,45"}},{"content":"Faulty protein &#x2192; disease","children":[],"payload":{"tag":"li","lines":"45,47"}}],"payload":{"tag":"h2","lines":"42,43"}},{"content":"ClinVar","children":[{"content":"NIH/NCBI database","children":[],"payload":{"tag":"li","lines":"48,49"}},{"content":"Stores disease-linked variants","children":[],"payload":{"tag":"li","lines":"49,50"}},{"content":"Clinical genetics reference","children":[],"payload":{"tag":"li","lines":"50,52"}}],"payload":{"tag":"h2","lines":"47,48"}},{"content":"PharmGKB","children":[{"content":"Stanford + NIH","children":[],"payload":{"tag":"li","lines":"53,54"}},{"content":"Drug response genetics","children":[],"payload":{"tag":"li","lines":"54,55"}},{"content":"Pharmacogenomics","children":[],"payload":{"tag":"li","lines":"55,57"}}],"payload":{"tag":"h2","lines":"52,53"}},{"content":"Sequencing","children":[{"content":"Reads DNA letters","children":[],"payload":{"tag":"li","lines":"58,59"}},{"content":"Whole genome vs variant panels","children":[],"payload":{"tag":"li","lines":"59,60"}},{"content":"Machines break DNA into fragments","children":[],"payload":{"tag":"li","lines":"60,61"}},{"content":"Software assembles sequence","children":[],"payload":{"tag":"li","lines":"61,63"}}],"payload":{"tag":"h2","lines":"57,58"}},{"content":"Evolution","children":[{"content":"Common ancestry","children":[],"payload":{"tag":"li","lines":"64,65"}},{"content":"Single-cell origin","children":[],"payload":{"tag":"li","lines":"65,66"}},{"content":"DNA mutations over billions of years","children":[],"payload":{"tag":"li","lines":"66,67"}},{"content":"Branching tree of life","children":[],"payload":{"tag":"li","lines":"67,69"}}],"payload":{"tag":"h2","lines":"63,64"}},{"content":"Life Cycle of DNA","children":[{"content":"Exists in cells","children":[],"payload":{"tag":"li","lines":"70,71"}},{"content":"Degrades after death","children":[],"payload":{"tag":"li","lines":"71,72"}},{"content":"Breaks into molecules &#x2192; atoms","children":[],"payload":{"tag":"li","lines":"72,73"}},{"content":"Recycled in nature","children":[],"payload":{"tag":"li","lines":"73,74"}}],"payload":{"tag":"h2","lines":"69,70"}}],"payload":{"tag":"h1","lines":"0,1"}},null)</script>
 </body>
 </html>
