@@ -4,14 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Database Roles - Markmap</title>
+<title>Markmap</title>
 <style>
 * {
   margin: 0;
   padding: 0;
 }
 html {
-  font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 #mindmap {
   display: block;
@@ -42,6 +43,7 @@ html {
   font-size: 14px;
   font-weight: 500;
   transition: all 0.3s ease;
+  font-family: 'Outfit', sans-serif;
 }
 .back-button:hover {
   background: rgba(255, 255, 255, 0.1);
@@ -65,53 +67,27 @@ html {
     <span>Portal</span>
   </a>
   <svg id="mindmap"></svg>
-  
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script>
-  <script>
-    const markdown = `
-# Database Roles
-
-- Database Administrator (DBA)
-  - Installation & Upgrades
-  - Backups & Recovery
-  - Performance Tuning
-  - Monitoring & Alerting
-  - Security & Access Control
-  - High Availability
-  - Archiving & Retention
-  - Capacity Planning
-
-- Database Developer
-  - Schema Design
-  - Data Modeling
-  - SQL / NoSQL Queries
-  - Stored Procedures
-  - Indexing Strategy
-  - Query Optimization
-  - Data Integrity
-  - Application Integration
-`;
-
-    const { Markmap, loadCSS, loadJS, Transformer } = window.markmap;
-    const transformer = new Transformer();
-    const { root, features } = transformer.transform(markdown);
-    const { styles, scripts } = transformer.getAssets();
-    if (styles) loadCSS(styles);
-    if (scripts) loadJS(scripts);
-    
-    Markmap.create('svg#mindmap', null, root);
-    
-    // Add toolbar
-    const { Toolbar } = window.markmap;
-    const toolbar = new Toolbar();
-    toolbar.attach(window.mm || Markmap.create('svg#mindmap', null, root));
-    const toolbarEl = toolbar.render();
-    toolbarEl.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
-    document.body.append(toolbarEl);
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>((r) => {
+          setTimeout(r);
+        })(() => {
+  const { markmap, mm } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Database Roles","children":[{"content":"\n<p data-lines=\"2,3\">Database Administrator (DBA)</p>","children":[{"content":"Installation &amp; Upgrades","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"Backups &amp; Recovery","children":[],"payload":{"tag":"li","lines":"4,5"}},{"content":"Performance Tuning","children":[],"payload":{"tag":"li","lines":"5,6"}},{"content":"Monitoring &amp; Alerting","children":[],"payload":{"tag":"li","lines":"6,7"}},{"content":"Security &amp; Access Control","children":[],"payload":{"tag":"li","lines":"7,8"}},{"content":"High Availability","children":[],"payload":{"tag":"li","lines":"8,9"}},{"content":"Archiving &amp; Retention","children":[],"payload":{"tag":"li","lines":"9,10"}},{"content":"Capacity Planning","children":[],"payload":{"tag":"li","lines":"10,12"}}],"payload":{"tag":"li","lines":"2,12"}},{"content":"\n<p data-lines=\"12,13\">Database Developer</p>","children":[{"content":"Schema Design","children":[],"payload":{"tag":"li","lines":"13,14"}},{"content":"Data Modeling","children":[],"payload":{"tag":"li","lines":"14,15"}},{"content":"SQL / NoSQL Queries","children":[],"payload":{"tag":"li","lines":"15,16"}},{"content":"Stored Procedures","children":[],"payload":{"tag":"li","lines":"16,17"}},{"content":"Indexing Strategy","children":[],"payload":{"tag":"li","lines":"17,18"}},{"content":"Query Optimization","children":[],"payload":{"tag":"li","lines":"18,19"}},{"content":"Data Integrity","children":[],"payload":{"tag":"li","lines":"19,20"}},{"content":"Application Integration","children":[],"payload":{"tag":"li","lines":"20,21"}}],"payload":{"tag":"li","lines":"12,21"}}],"payload":{"tag":"h1","lines":"0,1"}},null)</script>
 </body>
 </html>
