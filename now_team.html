@@ -109,18 +109,6 @@ html {
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
-function setLevel(level) {
-  const walk = (node, depth) => {
-    if (node.children) {
-      node.payload = node.payload || {};
-      node.payload.fold = depth >= level ? 1 : 0;
-      node.children.forEach(c => walk(c, depth + 1));
-    }
-  };
-  walk(window.mm.data, 0);
-  window.mm.setData(window.mm.data);
-  window.mm.fit();
-}
 
 // Helper to traverse and set fold state
 const setFoldState = (node, value) => {
