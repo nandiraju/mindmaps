@@ -122,35 +122,30 @@ function setLevel(level) {
   window.mm.fit();
 }
 
+// Helper to traverse and set fold state
+const setFoldState = (node, value) => {
+  if (!node) return;
+  node.payload = node.payload || {};
+  node.payload.fold = value;
+  if (node.children) {
+    node.children.forEach(child => setFoldState(child, value));
+  }
+};
+
 function expandAll() {
   if (!window.mm) {
     console.error('Markmap not initialized yet');
     return;
   }
-  const walk = (node) => {
-    if (!node) return;
-    // Ensure payload exists
-    node.payload = node.payload || {};
-    // Unfold this node
-    node.payload.fold = 0;
-    // Recursively unfold all children
-    if (node.children && node.children.length > 0) {
-      node.children.forEach(walk);
-    }
-  };
-  // Start from root - use window.mm.data like setLevel does
-  walk(window.mm.data);
-  // Update the markmap
+  // Set fold = 0 (expand) for all nodes
+  setFoldState(window.mm.data, 0);
   window.mm.setData(window.mm.data);
   window.mm.fit();
-  // Delay fit to ensure expansion completes
+  
+  // Ensure fit after animation
   setTimeout(() => {
     window.mm.fit();
-    // Additional rescale for better fitting
-    setTimeout(() => {
-      window.mm.rescale(0.9);
-    }, 100);
-  }, 300);
+  }, 400);
 }
 
 function collapseAll() {
@@ -158,15 +153,8 @@ function collapseAll() {
     console.error('Markmap not initialized yet');
     return;
   }
-  const walk = (node) => {
-    if (!node) return;
-    node.payload = node.payload || {};
-    node.payload.fold = 1; // Fold all children
-    if (node.children && node.children.length > 0) {
-      node.children.forEach(walk);
-    }
-  };
-  walk(window.mm.data);
+  // Set fold = 1 (collapse) for all nodes
+  setFoldState(window.mm.data, 1);
   window.mm.setData(window.mm.data);
   window.mm.fit();
 }
