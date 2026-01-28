@@ -26,13 +26,11 @@
     - CI/CD
     - deployments
     - automation
+    - IAM & Secret Management
+    - Basic Security
   - SRE / Reliability Engineer
     - Monitoring
     - uptime
     - incidents
     - scaling
-  - DevSecOps (part-time)
-    - IAM
-    - secrets
-    - basic security
-    - compliance
+    - Compliance & Auditing
