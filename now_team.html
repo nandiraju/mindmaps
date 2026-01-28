@@ -63,6 +63,31 @@ html {
   color: white;
   transform: translateY(-2px);
 }
+.search-container {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1000;
+}
+.search-input {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 16px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  width: 200px;
+  transition: all 0.3s ease;
+}
+.search-input:focus {
+  outline: none;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,6 +109,10 @@ html {
       <i data-lucide="maximize-2" style="width:18px;height:18px"></i>
       <span>Expand All</span>
     </button>
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search team members..." class="search-input" oninput="handleSearch(event)">
   </div>
 
 <svg id="mindmap"></svg>
@@ -116,6 +145,23 @@ function expandFull() {
   window.mm.fit();
 }
 
+function handleSearch(e) {
+  const query = e.target.value.toLowerCase();
+  if (!query) return;
+  
+  const nodes = document.querySelectorAll('.markmap-node');
+  nodes.forEach(node => {
+    const text = node.textContent.toLowerCase();
+    if (text.includes(query)) {
+      node.style.opacity = "1";
+      node.style.filter = "drop-shadow(0 0 8px rgba(255,255,255,0.5))";
+    } else {
+      node.style.opacity = "0.3";
+      node.style.filter = "none";
+    }
+  });
+}
+
 ((r) => {
   setTimeout(r);
 })(() => {
@@ -132,7 +178,7 @@ function expandFull() {
   const markmap = getMarkmap();
   window.mm = markmap.Markmap.create(
     "svg#mindmap",
-    (getOptions || markmap.deriveOptions)(jsonOptions),
+    { ...((getOptions || markmap.deriveOptions)(jsonOptions)), initialExpandLevel: 2 },
     root2
   );
   document.documentElement.classList.add("markmap-dark");
