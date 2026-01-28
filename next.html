@@ -57,6 +57,59 @@ html {
   width: 18px;
   height: 18px;
 }
+.search-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.8), transparent);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  pointer-events: auto;
+}
+.search-input {
+  width: 100%;
+  padding: 14px 24px;
+  padding-left: 52px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+.search-input:focus {
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+  transform: translateY(-2px);
+}
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.4);
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+}
+.search-wrapper:focus-within .search-icon {
+  color: #a78bfa;
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,8 +122,66 @@ html {
     <span>Portal</span>
   </a>
   <svg id="mindmap"></svg>
+  <div class="search-container">
+    <div class="search-wrapper">
+      <i data-lucide="search" class="search-icon"></i>
+      <input type="text" id="node-search" class="search-input" placeholder="Jump to node...">
+    </div>
+  </div>
+
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(()=>{setTimeout(()=>{const{markmap:S,mm:Q}=window,$=new S.Toolbar;$.attach(Q);const I=$.render();I.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(I)})})()</script><script>((l,U,M,R)=>{const N=l();window.mm=N.Markmap.create("svg#mindmap",(U||N.deriveOptions)(R),M),window.matchMedia("(prefers-color-scheme: dark)").matches&&document.documentElement.classList.add("markmap-dark")})(()=>window.markmap,null,{"content":"Srikanth Nandiraju","children":[{"content":"Data Science & ML","children":[{"content":"Tanveer Gupte (Sr Data Scientist)","children":[],"payload":{"tag":"li","lines":"1,2"}},{"content":"P M Shivamurthy (Data Scientist Imaging)","children":[{"content":"Chongtham Chinglemba (Data Scientist)","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"Aditya Satpute (Data Scientist)","children":[],"payload":{"tag":"li","lines":"4,5"}},{"content":"Mohit Panwar (Data Scientist)","children":[],"payload":{"tag":"li","lines":"5,6"}},{"content":"Shibsankar Maity (Data Scientist)","children":[],"payload":{"tag":"li","lines":"6,7"}}],"payload":{"tag":"li","lines":"2,7"}},{"content":"Anand Ulle (Data Scientist Imaging)","children":[{"content":"Kaustubh Avhad (Data Scientist)","children":[],"payload":{"tag":"li","lines":"8,9"}},{"content":"Akhilesh Sakhare (Data Scientist)","children":[],"payload":{"tag":"li","lines":"9,10"}},{"content":"Thoudam Yoihenba (Data Scientist)","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"Dnyaneshwar Khaire (Data Scientist)","children":[],"payload":{"tag":"li","lines":"11,12"}}],"payload":{"tag":"li","lines":"7,12"}}]},{"content":"Parag Tiwari (Program Manager)","children":[{"content":"Product","children":[{"content":"Akanksha Shikhare (Product Manager)","children":[],"payload":{"tag":"li","lines":"13,14"}},{"content":"Dhruba Datta (Product Manager)","children":[],"payload":{"tag":"li","lines":"14,15"}}]},{"content":"UI/UX","children":[{"content":"Rajesh Madibone (UI/UX Lead)","children":[],"payload":{"tag":"li","lines":"19,20"}},{"content":"Veeranala Pravallika (Trainee UI/UX)","children":[],"payload":{"tag":"li","lines":"16,17"}}]},{"content":"engineers","children":[{"content":"Mujeeb Nazir (Junior Software Engineer)","children":[],"payload":{"tag":"li","lines":"17,18"}},{"content":"Sweta Reddy (Automation Engineer)","children":[],"payload":{"tag":"li","lines":"18,19"}},{"content":"Kavita Sanap (Software Engineer)","children":[],"payload":{"tag":"li","lines":"15,16"}}]}]},{"content":"Swetal Gajjar (Vice President - Technology Solution)","children":[{"content":"Basant Dewangan (QA Manager)","children":[{"content":"Seema Verma (Senior QA)","children":[],"payload":{"tag":"li","lines":"22,23"}},{"content":"Vijay Solanke (Senior QA Engineer)","children":[],"payload":{"tag":"li","lines":"23,24"}},{"content":"Shilpa Ramteke (QA Lead)","children":[],"payload":{"tag":"li","lines":"24,25"}},{"content":"Ankita Rathod (QA Engineer)","children":[],"payload":{"tag":"li","lines":"25,26"}},{"content":"Akshay Kumdale (QA Engineer)","children":[],"payload":{"tag":"li","lines":"26,27"}},{"content":"Vedant Shirsekar (QA Engineer)","children":[],"payload":{"tag":"li","lines":"27,28"}}],"payload":{"tag":"li","lines":"21,28"}},{"content":"Avinash Gupta (Chief Technical Architect)","children":[{"content":"Surabhi Pednekar (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"29,30"}},{"content":"Ankitsingh Bisht (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"30,31"}},{"content":"Furkan Aalam (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"31,32"}},{"content":"Jibran Mir (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"32,33"}},{"content":"Kiran Abhinav (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"33,34"}},{"content":"Prabhash Kumar (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"34,35"}},{"content":"Rahul Meena (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"35,36"}},{"content":"Sannidhya Srivastava (Junior DevOps Engineer)","children":[],"payload":{"tag":"li","lines":"36,37"}}],"payload":{"tag":"li","lines":"28,37"}},{"content":"Mohammed Samiwala (Lead Developer)","children":[{"content":"John Wilson (Front End Developer)","children":[],"payload":{"tag":"li","lines":"38,39"}},{"content":"Naman Shrimali (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"39,40"}},{"content":"Firas Ahmad (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"40,41"}},{"content":"Rohitkumar Chavan (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"41,42"}}],"payload":{"tag":"li","lines":"37,42"}},{"content":"Surendra Kathane (Software Manager)","children":[{"content":"Manish Sonawane (Jr Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"43,44"}},{"content":"Sangram Mahadik (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"44,45"}},{"content":"Anuradha Oman (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"45,46"}},{"content":"Preeti Mishra (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"46,47"}},{"content":"Mohd Yafis Khan (Full Stack Developer)","children":[],"payload":{"tag":"li","lines":"47,48"}}],"payload":{"tag":"li","lines":"42,48"}},{"content":"Prashant Shah (Product Support Manager)","children":[],"payload":{"tag":"li","lines":"48,49"}}],"payload":{"tag":"li","lines":"20,49"}}],"payload":{"tag":"li","lines":"0,49"}},null)</script>
+<script>
+  window.addEventListener('load', () => {
+    const searchInput = document.getElementById('node-search');
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      if (!query || query.length < 2) return;
+
+      const findNode = (node, parent = null) => {
+        const content = (node.content || '').replace(/<[^>]*>/g, '').toLowerCase();
+        if (content.includes(query)) {
+          return { node, parent };
+        }
+        if (node.children) {
+          for (const child of node.children) {
+            const found = findNode(child, node);
+            if (found) return found;
+          }
+        }
+        return null;
+      };
+
+      const match = findNode(window.mm.state.data);
+      if (match) {
+        const targetNode = match.parent || match.node;
+        const d3Nodes = d3.selectAll('.markmap-node');
+        const targetD3 = d3Nodes.filter(d => d.data === targetNode);
+        
+        if (!targetD3.empty()) {
+          const d = targetD3.datum();
+          const svg = d3.select('svg#mindmap');
+          const { width, height } = svg.node().getBoundingClientRect();
+          
+          const scale = 1.8;
+          const x = width / 2 - d.y * scale;
+          const y = height / 2 - d.x * scale;
+          
+          svg.transition()
+            .duration(750)
+            .call(window.mm.zoom.transform, d3.zoomIdentity.translate(x, y).scale(scale));
+        }
+      }
+    });
+
+    // Clear search and reset view when input is empty
+    searchInput.addEventListener('keyup', (e) => {
+      if (e.target.value === '') {
+        window.mm.fit();
+      }
+    });
+  });
+</script>
 </body>
 </html>
