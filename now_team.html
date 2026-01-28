@@ -138,10 +138,10 @@ function expandAll() {
       node.children.forEach(walk);
     }
   };
-  // Start from root
-  walk(window.mm.state.data);
+  // Start from root - use window.mm.data like setLevel does
+  walk(window.mm.data);
   // Update the markmap
-  window.mm.setData(window.mm.state.data);
+  window.mm.setData(window.mm.data);
   window.mm.fit();
   // Delay fit to ensure expansion completes
   setTimeout(() => {
@@ -158,15 +158,16 @@ function collapseAll() {
     console.error('Markmap not initialized yet');
     return;
   }
-  const walk = (node, depth) => {
-    if (node.children) {
-      node.payload = node.payload || {};
-      node.payload.fold = 1; // Fold all children
-      node.children.forEach(c => walk(c, depth + 1));
+  const walk = (node) => {
+    if (!node) return;
+    node.payload = node.payload || {};
+    node.payload.fold = 1; // Fold all children
+    if (node.children && node.children.length > 0) {
+      node.children.forEach(walk);
     }
   };
-  walk(window.mm.state.data, 0);
-  window.mm.setData(window.mm.state.data);
+  walk(window.mm.data);
+  window.mm.setData(window.mm.data);
   window.mm.fit();
 }
 
