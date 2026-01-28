@@ -93,13 +93,13 @@ html {
 </head>
 <body class="markmap-dark">
   <div class="controls-container">
-    <button onclick="setLevel(2)" class="control-btn">
-      <i data-lucide="layers" style="width:18px;height:18px"></i>
-      <span>Level 2</span>
-    </button>
-    <button onclick="expandFull()" class="control-btn">
+    <button onclick="expandAll()" class="control-btn">
       <i data-lucide="maximize-2" style="width:18px;height:18px"></i>
       <span>Expand All</span>
+    </button>
+    <button onclick="collapseAll()" class="control-btn">
+      <i data-lucide="minimize-2" style="width:18px;height:18px"></i>
+      <span>Collapse All</span>
     </button>
   </div>
 
@@ -124,7 +124,7 @@ function setLevel(level) {
   window.mm.fit();
 }
 
-function expandFull() {
+function expandAll() {
   const walk = (node) => {
     if (node.children) {
       node.payload = node.payload || {};
@@ -133,6 +133,19 @@ function expandFull() {
     }
   };
   walk(window.mm.data);
+  window.mm.setData(window.mm.data);
+  window.mm.fit();
+}
+
+function collapseAll() {
+  const walk = (node, depth) => {
+    if (node.children) {
+      node.payload = node.payload || {};
+      node.payload.fold = 1; // Fold all children
+      node.children.forEach(c => walk(c, depth + 1));
+    }
+  };
+  walk(window.mm.data, 0);
   window.mm.setData(window.mm.data);
   window.mm.fit();
 }
