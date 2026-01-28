@@ -155,8 +155,10 @@ html {
 
         d3Nodes.each(function(d) {
           if (match) return;
-          const content = (d.data.content || '').replace(/<[^>]*>/g, '').toLowerCase();
-          if (content.includes(query)) {
+          // Markmap d3 nodes have content directly on d or in d.data (depending on version/transform)
+          const nodeContent = (d.content || (d.data && d.data.content) || '');
+          const plainContent = nodeContent.replace(/<[^>]*>/g, '').toLowerCase();
+          if (plainContent.includes(query)) {
             match = { d, el: this };
           }
         });
