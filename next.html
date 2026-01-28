@@ -135,50 +135,67 @@ html {
 <script>
   window.addEventListener('load', () => {
     const searchInput = document.getElementById('node-search');
+    let searchTimeout;
+
     searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.toLowerCase();
-      if (!query || query.length < 2) return;
+      clearTimeout(searchTimeout);
+      const query = e.target.value.toLowerCase().trim();
+      
+      if (!query) {
+        window.mm.fit();
+        d3.selectAll('.markmap-node circle').style('fill', null).style('stroke', null).style('stroke-width', null);
+        return;
+      }
 
-      const findNode = (node, parent = null) => {
-        const content = (node.content || '').replace(/<[^>]*>/g, '').toLowerCase();
-        if (content.includes(query)) {
-          return { node, parent };
-        }
-        if (node.children) {
-          for (const child of node.children) {
-            const found = findNode(child, node);
-            if (found) return found;
-          }
-        }
-        return null;
-      };
+      if (query.length < 2) return;
 
-      const match = findNode(window.mm.state.data);
-      if (match) {
-        const targetNode = match.parent || match.node;
+      searchTimeout = setTimeout(() => {
         const d3Nodes = d3.selectAll('.markmap-node');
-        const targetD3 = d3Nodes.filter(d => d.data === targetNode);
-        
-        if (!targetD3.empty()) {
-          const d = targetD3.datum();
+        let match = null;
+
+        d3Nodes.each(function(d) {
+          if (match) return;
+          const content = (d.data.content || '').replace(/<[^>]*>/g, '').toLowerCase();
+          if (content.includes(query)) {
+            match = { d, el: this };
+          }
+        });
+
+        if (match) {
+          const { d } = match;
           const svg = d3.select('svg#mindmap');
           const { width, height } = svg.node().getBoundingClientRect();
           
-          const scale = 1.8;
+          // Markmap Y is horizontal, X is vertical
+          const scale = 2;
           const x = width / 2 - d.y * scale;
           const y = height / 2 - d.x * scale;
           
           svg.transition()
-            .duration(750)
+            .duration(800)
+            .ease(d3.easeCubicInOut)
             .call(window.mm.zoom.transform, d3.zoomIdentity.translate(x, y).scale(scale));
+
+          // Highlight matching node
+          d3.selectAll('.markmap-node circle')
+            .style('fill', null)
+            .style('stroke', null)
+            .style('stroke-width', null);
+            
+          d3.select(match.el).select('circle')
+            .style('fill', '#a78bfa')
+            .style('stroke', '#fff')
+            .style('stroke-width', '3px');
         }
-      }
+      }, 300);
     });
 
-    // Clear search and reset view when input is empty
-    searchInput.addEventListener('keyup', (e) => {
-      if (e.target.value === '') {
+    // Reset view on Escape key
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        e.target.value = '';
         window.mm.fit();
+        d3.selectAll('.markmap-node circle').style('fill', null).style('stroke', null).style('stroke-width', null);
       }
     });
   });
