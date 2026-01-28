@@ -19,3 +19,20 @@
   - Query Optimization
   - Data Integrity
   - Application Integration
+
+- DevOps
+  - DevOps / Cloud Engineer
+    - AWS/GCP infra
+    - CI/CD
+    - deployments
+    - automation
+  - SRE / Reliability Engineer
+    - Monitoring
+    - uptime
+    - incidents
+    - scaling
+  - DevSecOps (part-time)
+    - IAM
+    - secrets
+    - basic security
+    - compliance
