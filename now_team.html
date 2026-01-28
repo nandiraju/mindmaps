@@ -128,14 +128,21 @@ function expandAll() {
     return;
   }
   const walk = (node) => {
-    if (node.children) {
-      node.payload = node.payload || {};
-      node.payload.fold = 0;
+    if (!node) return;
+    // Ensure payload exists
+    node.payload = node.payload || {};
+    // Unfold this node
+    node.payload.fold = 0;
+    // Recursively unfold all children
+    if (node.children && node.children.length > 0) {
       node.children.forEach(walk);
     }
   };
+  // Start from root
   walk(window.mm.state.data);
+  // Update the markmap
   window.mm.setData(window.mm.state.data);
+  window.mm.fit();
   // Delay fit to ensure expansion completes
   setTimeout(() => {
     window.mm.fit();
