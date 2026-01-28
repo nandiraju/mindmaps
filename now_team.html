@@ -27,36 +27,10 @@ html {
   display: none !important;
 }
 .back-button, .control-btn {
-  position: fixed;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  font-family: 'Outfit', sans-serif;
-}
-.back-button {
-  top: 20px;
-  left: 20px;
+  display: none;
 }
 .controls-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  display: flex;
-  gap: 12px;
+  display: none;
 }
 .back-button:hover, .control-btn:hover {
   background: rgba(255, 255, 255, 0.1);
@@ -95,21 +69,6 @@ html {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
 </head>
 <body class="markmap-dark">
-  <a href="index.html" class="back-button">
-    <i data-lucide="home" style="width:18px;height:18px"></i>
-    <span>Portal</span>
-  </a>
-
-  <div class="controls-container">
-    <button onclick="setLevel(2)" class="control-btn">
-      <i data-lucide="layers" style="width:18px;height:18px"></i>
-      <span>Level 2</span>
-    </button>
-    <button onclick="expandFull()" class="control-btn">
-      <i data-lucide="maximize-2" style="width:18px;height:18px"></i>
-      <span>Expand All</span>
-    </button>
-  </div>
 
   <div class="search-container">
     <input type="text" id="searchInput" placeholder="Search team members..." class="search-input" oninput="handleSearch(event)">
