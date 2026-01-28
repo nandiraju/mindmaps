@@ -132,7 +132,10 @@ function expandAll() {
   };
   walk(window.mm.data);
   window.mm.setData(window.mm.data);
-  window.mm.fit();
+  // Delay fit to ensure expansion completes
+  setTimeout(() => {
+    window.mm.fit();
+  }, 300);
 }
 
 function collapseAll() {
