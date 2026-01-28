@@ -26,63 +26,6 @@ html {
 .mm-toolbar-brand {
   display: none !important;
 }
-.control-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  font-family: 'Outfit', sans-serif;
-}
-.controls-container {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  display: flex;
-  gap: 12px;
-}
-.control-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  transform: translateY(-2px);
-}
-.search-container {
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  z-index: 1000;
-}
-.search-input {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 10px 16px;
-  color: white;
-  font-family: 'Outfit', sans-serif;
-  font-size: 14px;
-  width: 200px;
-  transition: all 0.3s ease;
-}
-.search-input:focus {
-  outline: none;
-  width: 300px;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.3);
-}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,80 +33,9 @@ html {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
 </head>
 <body class="markmap-dark">
-  <div class="controls-container">
-    <button onclick="expandAll()" class="control-btn">
-      <i data-lucide="maximize-2" style="width:18px;height:18px"></i>
-      <span>Expand All</span>
-    </button>
-    <button onclick="collapseAll()" class="control-btn">
-      <i data-lucide="minimize-2" style="width:18px;height:18px"></i>
-      <span>Collapse All</span>
-    </button>
-  </div>
-
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search team members..." class="search-input" oninput="handleSearch(event)">
-  </div>
-
 <svg id="mindmap"></svg>
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
 <script>
-
-// Helper to traverse and set fold state
-const setFoldState = (node, value) => {
-  if (!node) return;
-  node.payload = node.payload || {};
-  node.payload.fold = value;
-  if (node.children) {
-    node.children.forEach(child => setFoldState(child, value));
-  }
-};
-
-function expandAll() {
-  if (!window.mm) {
-    console.error('Markmap not initialized yet');
-    return;
-  }
-  // Set fold = 0 (expand) for all nodes
-  setFoldState(window.mm.data, 0);
-  window.mm.setData(window.mm.data);
-  window.mm.fit();
-  
-  // Ensure fit after animation
-  setTimeout(() => {
-    window.mm.fit();
-  }, 400);
-}
-
-function collapseAll() {
-  if (!window.mm) {
-    console.error('Markmap not initialized yet');
-    return;
-  }
-  // Set fold = 1 (collapse) for all nodes
-  setFoldState(window.mm.data, 1);
-  window.mm.setData(window.mm.data);
-  window.mm.fit();
-}
-
-function handleSearch(e) {
-  const query = e.target.value.toLowerCase();
-  if (!query) return;
-  
-  const nodes = document.querySelectorAll('.markmap-node');
-  nodes.forEach(node => {
-    const text = node.textContent.toLowerCase();
-    if (text.includes(query)) {
-      node.style.opacity = "1";
-      node.style.filter = "drop-shadow(0 0 8px rgba(255,255,255,0.5))";
-    } else {
-      node.style.opacity = "0.3";
-      node.style.filter = "none";
-    }
-  });
-}
-
 ((r) => {
   setTimeout(r);
 })(() => {
@@ -173,7 +45,6 @@ function handleSearch(e) {
   const el = toolbar.render();
   el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
   document.body.append(el);
-  lucide.createIcons();
 })
 </script>
 <script>((getMarkmap, getOptions, root2, jsonOptions) => {
