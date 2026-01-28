@@ -139,6 +139,10 @@ function expandAll() {
   // Delay fit to ensure expansion completes
   setTimeout(() => {
     window.mm.fit();
+    // Additional rescale for better fitting
+    setTimeout(() => {
+      window.mm.rescale(0.9);
+    }, 100);
   }, 300);
 }
 
